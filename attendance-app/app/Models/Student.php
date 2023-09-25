@@ -11,7 +11,7 @@ class Student extends Model
     use HasFactory;
 
     public static function getStudents(){
-        return [];
-        //return DB::select("select * from Students;");
+        $datas = DB::select("select * from students;");
+        return $datas;
     }
 }

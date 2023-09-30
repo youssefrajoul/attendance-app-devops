@@ -18,10 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos
-
-### macOS ###
+###### macOS ######
 # General
 .DS_Store
 .AppleDouble
@@ -54,4 +51,17 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
-# End of https://www.toptal.com/developers/gitignore/api/macos
+###### PHPUnit ######
+
+# Generated files
+.phpunit.cache
+
+# PHPUnit
+/app/phpunit.xml
+/phpunit.xml
+
+# Build data
+/build/
+
+###### Database ######
+database/database.db

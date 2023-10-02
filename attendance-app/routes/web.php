@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::get('/home', [StudentController::class, 'home'])->name('home');
 Route::post('/student/', [StudentController::class, 'store']);
 Route::delete('/students/delete/{matricule}',[StudentController::class, 'delete']);
+Route::get('/lessons', [StudentController::class, 'showLessons']);

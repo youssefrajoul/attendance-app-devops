@@ -15,6 +15,7 @@
     {{-- <table id="content">
 
     </table> --}}
+    @yield('lesson')
 
     @yield('formulaire')
 </body>

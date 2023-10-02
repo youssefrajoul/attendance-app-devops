@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 use \App\Models\Student;
@@ -27,6 +28,12 @@ class StudentController extends Controller
         Student::deleteStudent($matricule);
 
         return redirect('home');
+    }
+
+    public function showLessons()
+    {
+        $allLessons = Lesson::getAll();
+        return view('lesson', ["allLessons" => $allLessons]);
     }
 
 }

@@ -11,6 +11,22 @@ class StudentController extends Controller
     public static function home()
     {
         $students = Student::getStudents();
-        return view("home",["datas" => $students]);
+        return view("form",["datas" => $students]);
     }
+
+    public function store(Request $request)
+    {
+        Student::addStudent($request);
+        
+        return redirect('home');
+
+    }
+
+    public function delete($matricule)
+    {
+        Student::deleteStudent($matricule);
+
+        return redirect('home');
+    }
+
 }

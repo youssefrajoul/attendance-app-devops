@@ -20,4 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [StudentController::class, 'home']);
+Route::get('/home', [StudentController::class, 'home'])->name('home');
+Route::post('/student/', [StudentController::class, 'store']);
+Route::delete('/students/delete/{matricule}',[StudentController::class, 'delete']);

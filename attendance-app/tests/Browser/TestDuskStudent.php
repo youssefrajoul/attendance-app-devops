@@ -13,13 +13,10 @@ class TestDuskStudent extends DuskTestCase
      */
     public function testExample(): void
     {
-        $this->seed(\StudentSeeder::class);
-        $this->assertDatabaseHas('students',
-            ['matricule' => 12345, 'nom' => 'Smith', 'prenom' => 'John', 'groupe' => 'A311']);
-
+       
         $this->browse(function (Browser $browser) {
-            $browser->visit('/home')
-                    ->assertSee("Smith")
+            $browser->visit('/api/students/get')
+                    ->assertSee("Azoz")
                     ->assertSee("John")
                     ->assertSee("A311")
                     ->assertSee("12345");

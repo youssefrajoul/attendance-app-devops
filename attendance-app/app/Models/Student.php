@@ -18,8 +18,13 @@ class Student extends Model
 
     public static function addStudent($student)
     {
-        DB::insert("insert into students (matricule, nom, prenom, groupe) values (?,?,?,?)", [$student->matricule,]);
+        DB::insert("insert into students (matricule, nom, prenom, groupe) values (?,?,?,?)", 
+            [$student->matricule,
+            $student->nom,
+            $student->prenom,
+            $student->groupe]);
     }
+    
     public static function checkStudentAvailable($matricule)
     {
         $isAvailable = DB::select("select * from students where matricule = ?;", [$matricule]);

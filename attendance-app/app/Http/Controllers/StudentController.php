@@ -12,14 +12,14 @@ class StudentController extends Controller
     public static function home()
     {
         $students = Student::getStudents();
-        return view("form",["datas" => $students]);
+        return view("form", ["datas" => $students]);
     }
 
     public function store(Request $request)
     {
         Student::addStudent($request);
-        
-        return redirect('home');
+
+        return redirect('');
 
     }
 
@@ -27,7 +27,7 @@ class StudentController extends Controller
     {
         Student::deleteStudent($matricule);
 
-        return redirect('home');
+        return redirect('');
     }
 
     public function showLessons()

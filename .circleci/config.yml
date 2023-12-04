@@ -50,17 +50,13 @@ jobs:
       tag: "3.6"
     steps:
       - checkout
-      - docker/install-docker-tools
-      - setup_remote_docker:
-          version: 20.10.24
-          docker_layer_caching: true
-      - run:
-          name: "Build and Push Docker image"
-          command: |
-            docker build -t prjg5noecontainer.azurecr.io/prjg5neo:latest .
-            echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
-            docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
-        tty: true # Add this line to force TTY allocation
+      # Use the docker-compose orb for Docker-related steps
+      - docker-compose/build
+      - docker-compose/configure:
+          image-name: prjg5noecontainer.azurecr.io/prjg5neo:latest
+      - docker-compose/push:
+          requires:
+            - docker-compose/configure
 
 workflows:
   test-and-deploy:

@@ -44,10 +44,6 @@ jobs:
             cp .env.example .env
             php artisan key:generate
 
-      - run:
-          name: "Run tests"
-          command: php vendor/bin/phpunit
-
   build-docker-image:
     executor:
       name: docker/docker

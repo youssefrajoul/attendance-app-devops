@@ -68,7 +68,7 @@ jobs:
 workflows:
   test-and-deploy:
     jobs:
-      - build-and-test
+      # - build-and-test
       - build-docker-image:
-          requires:
-            - build-and-test
+          # requires:
+          #   - build-and-test

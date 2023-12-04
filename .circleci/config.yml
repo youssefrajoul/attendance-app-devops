@@ -58,8 +58,12 @@ jobs:
           name: "Build and Push Docker image"
           command: |
             docker build -t prjg5noecontainer.azurecr.io/prjg5neo:latest .
-            echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
+            docker login -u $DOCKER_USER -p $DOCKER_PASS prjg5noecontainer.azurecr.io
             docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
+
+# docker build -t prjg5noecontainer.azurecr.io/prjg5neo:latest .
+# echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
+# docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
 
 workflows:
   test-and-deploy:

@@ -12,7 +12,7 @@ jobs:
     description: Setup laravel application and run tests
     docker:
       # Specify the version you desire here
-      - image: php:8.2
+      - image: cimg/php:8.2
 
     steps:
       - checkout

@@ -1,0 +1,18 @@
+# version: "3"
+# services:
+#   php:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     networks:
+#       - internal
+#     volumes:
+#       - ./:/var/www/html/
+#     container_name: prjg5docker
+#     ports:
+#       - "8000:80"
+#     expose:
+#       - "9000"
+# networks:
+#   internal:
+#     driver: bridge

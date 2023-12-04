@@ -5,7 +5,7 @@ orbs:
 on:
   push:
     branches:
-      - youssef
+      - devops
 
 jobs:
   build-and-test:

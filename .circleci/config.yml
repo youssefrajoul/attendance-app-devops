@@ -56,11 +56,11 @@ jobs:
           docker_layer_caching: true
       - run:
         name: "Build and Push Docker image"
+        tty: true # Add this line to force TTY allocation
         command: |
           docker build -t prjg5noecontainer.azurecr.io/prjg5neo:latest .
           echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
           docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
-      tty: true  # Add this line to force TTY allocation
 
 workflows:
   test-and-deploy:

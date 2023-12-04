@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: "Install dependencies"
-          command: composer install -n --prefer-dist
+          command: composer install --prefer-dist --no-interaction
 
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
@@ -52,10 +52,10 @@ jobs:
       - checkout
       - docker/install-docker-tools
       - setup_remote_docker:
-          version: 20.10.14
+          version: 20.10.24
           docker_layer_caching: true
       - run:
-          name: "Build and push Docker image"
+          name: "Build and Push Docker image"
           command: |
             docker build -t prjg5noecontainer.azurecr.io/prjg5neo:latest .
             echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io

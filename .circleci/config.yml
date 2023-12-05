@@ -13,11 +13,6 @@ jobs:
       name: docker/docker
       tag: "3.6"
     steps:
-      - checkout
-      - docker/install-docker-tools
-      - setup_remote_docker:
-          version: 20.10.24
-          docker_layer_caching: true
       - run:
           name: "Build and Push Docker image"
           command: |

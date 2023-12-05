@@ -3,39 +3,28 @@ version: 2.1
 jobs:
   build-and-push:
     docker:
-      - image: php:8.2 # Replace with the name of your PHP Docker image
-
-    working_directory: /app
+      - image: circleci/php:8.2
 
     steps:
       - checkout
 
+      # Install Docker
       - run:
-          name: Install Composer
+          name: Install Docker
           command: |
-            curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            sudo apt-get update
+            sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-
+      # Authenticate with Azure Container Registry
       - run:
-          name: Install Dependencies
-          command: |
-            apt-get update && apt-get install -y zlib1g-dev libzip-dev unzip
-            docker-php-ext-install pdo pdo_mysql sockets zip
-            composer install --prefer-dist --no-interaction
+          name: Azure Login
+          command: echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
 
-      - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - /root/.composer/cache
-
+      # Build and push Docker image
       - run:
           name: Build and Push Docker Image
           command: |
             docker build . -t prjg5noecontainer.azurecr.io/prjg5neo:latest
-            echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
             docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
 
 workflows:

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  docker: docker@20.10.24
+  docker: circleci/docker@2.1.2
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     description: Setup laravel application and run tests
     docker:
       # Specify the version you desire here
-      - image: php:8.2.7
+      - image: cimg/php:8.2-browsers
 
     steps:
       - checkout

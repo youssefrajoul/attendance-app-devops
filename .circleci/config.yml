@@ -12,7 +12,7 @@ jobs:
     description: Setup laravel application and run tests
     docker:
       # Specify the version you desire here
-      - image: cimg/php:8.2-browsers
+      - image: cimg/php:8.2.7
 
     steps:
       - checkout
@@ -50,8 +50,8 @@ jobs:
       tag: "3.6"
     steps:
       - checkout
-      - docker/install-docker-tools:
-          # - setup_remote_docker:
+      - docker/install-docker-tools
+      - setup_remote_docker:
           version: 20.10.24
           docker_layer_caching: true
       - run:

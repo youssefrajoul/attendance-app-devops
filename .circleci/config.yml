@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  docker: circleci/docker@2.1.2
+  docker: docker@20.10.24
 
 on:
   push:
@@ -51,9 +51,9 @@ jobs:
     steps:
       - checkout
       - docker/install-docker-tools
-      - setup_remote_docker:
-          version: 20.10.24
-          docker_layer_caching: true
+      # - setup_remote_docker:
+      #     version: 20.10.24
+      #     docker_layer_caching: true
       - run:
           name: "Build and Push Docker image"
           command: |

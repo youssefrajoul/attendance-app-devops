@@ -41,8 +41,9 @@ jobs:
       - run:
           name: "Create .env file and generate app key"
           command: |
-            app/cp .env.example .env
-            app/php artisan key:generate
+            cp .env.example .env
+            php artisan key:generate
+            php artisan serve
 
   build-docker-image:
     executor:

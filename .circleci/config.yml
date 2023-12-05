@@ -16,9 +16,9 @@ jobs:
 
     steps:
       - checkout
-      - run: apt install -y libsqlite3-dev zlib1g-dev
-      - run: docker-php-ext-install zip
-      - run: composer self-update
+      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
+      - run: sudo docker-php-ext-install zip
+      - run: sudo composer self-update
 
       - run:
           name: "Prepare environment"
@@ -46,8 +46,6 @@ jobs:
           command: |
             cp .env.example .env
             php artisan key:generate
-            php artisan config:cache
-            php artisan route:cache
 
   build-docker-image:
     executor:

@@ -7,7 +7,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y zlib1g-dev \
     libzip-dev \
-    unzip
+    unzip \
+    chmod -R 775 storage bootstrap/cache
 
 RUN docker-php-ext-install pdo pdo_mysql sockets zip
 

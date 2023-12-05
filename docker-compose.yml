@@ -12,7 +12,7 @@
 #     ports:
 #       - "8000:80"
 #     expose:
-#       - "9000"
+#       - "8000"
 # networks:
 #   internal:
 #     driver: bridge

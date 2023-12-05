@@ -1,0 +1,48 @@
+name: Test and Deploy
+
+on:
+  push:
+    branches:
+      - devops
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: zip
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y libsqlite3-dev zlib1g-dev
+          composer self-update
+          composer install --prefer-dist --no-interaction
+
+      - name: Create .env file and generate app key
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
+
+      - name: Build and Push Docker image
+        run: |
+          docker build . -t prjg5noecontainer.azurecr.io/prjg5neo:latest
+          echo "${{ secrets.DOCKER_PASS }}" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
+          docker push prjg5noecontainer.azurecr.io/prjg5neo:latest

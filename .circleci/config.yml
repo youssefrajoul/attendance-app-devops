@@ -12,7 +12,7 @@ jobs:
     description: Setup laravel application and run tests
     docker:
       # Specify the version you desire here
-      - image: cimg/php:8.2-browsers
+      - image: cimg/php:8.2.7
 
     steps:
       - checkout
@@ -60,7 +60,6 @@ jobs:
             docker build . -t prjg5noecontainer.azurecr.io/prjg5neo:latest
             echo "$DOCKER_PASS" | docker login --username prjg5noecontainer --password-stdin prjg5noecontainer.azurecr.io
             docker push prjg5noecontainer.azurecr.io/prjg5neo:latest
-            docker run -p 8000:8000 prjg5noecontainer.azurecr.io/prjg5neo:latest
 
 workflows:
   test-and-deploy:
